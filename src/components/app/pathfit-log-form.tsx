@@ -5,11 +5,19 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Field, FieldGroup } from '@/components/ui/field';
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+} from '@/components/ui/field';
 import { Spinner } from '@/components/ui/spinner';
 import { type PathfitLogData, pathfitLogSchema } from '@/lib/validators';
 
 import { GeneralFieldSet } from './general-field-set';
+import { MetricsFields } from './metrics-fields';
 
 export function PathfitLogForm() {
   const form = useForm<PathfitLogData>({
@@ -32,6 +40,14 @@ export function PathfitLogForm() {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <FieldGroup>
           <GeneralFieldSet />
+          <FieldSeparator />
+          <FieldSet>
+            <FieldLegend>Metrics</FieldLegend>
+            <FieldDescription>Body measurements at the start of the term.</FieldDescription>
+            <FieldGroup>
+              <MetricsFields />
+            </FieldGroup>
+          </FieldSet>
           <Field orientation="responsive">
             <Button type="submit" disabled={isSubmitPending}>
               {isSubmitPending ? <Spinner /> : <WandSparkles />}
