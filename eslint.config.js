@@ -22,6 +22,12 @@ export default defineConfig([
     },
   },
   {
+    files: ['src/components/ui/**/*.tsx', 'src/context/**/*.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
+  {
     plugins: {
       'simple-import-sort': simpleImportSort,
     },
