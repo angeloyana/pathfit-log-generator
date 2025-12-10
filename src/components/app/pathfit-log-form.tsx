@@ -5,6 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { ActivityLogsFields } from '@/components/app/activity-logs-fields';
+import { PracticalTestFields } from '@/components/app/practical-test-fields';
 import { Button } from '@/components/ui/button';
 import {
   Field,
@@ -57,6 +58,8 @@ export function PathfitLogForm() {
               <ActivityLogsFields />
             </FieldGroup>
           </FieldSet>
+          <FieldSeparator />
+          <PracticalTestFields />
           <Field orientation="responsive">
             <Button type="submit" disabled={isSubmitPending}>
               {isSubmitPending ? <Spinner /> : <WandSparkles />}

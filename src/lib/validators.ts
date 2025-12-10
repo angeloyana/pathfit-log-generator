@@ -3,6 +3,12 @@ import { z } from 'zod';
 import { periodicTerms } from '@/constants/periodic-terms';
 import { sexes } from '@/constants/sexes';
 
+const metricsFields = {
+  weight: z.number(),
+  height: z.number(),
+  waistCircumference: z.number(),
+};
+
 const activityLogSchema = z
   .object({
     date: z.date(),
@@ -51,12 +57,15 @@ export const pathfitLogSchema = z
     section: z.string(),
     birthDate: z.date(),
     sex: z.enum(sexes.map(({ value }) => value)),
-
-    weight: z.number(),
-    height: z.number(),
-    waistCircumference: z.number(),
+    ...metricsFields,
 
     activityLogs: z.array(activityLogSchema),
+    practicalTest: z
+      .object({
+        metrics: z.object(metricsFields).partial(),
+        activityLog: activityLogSchema,
+      })
+      .partial(),
   })
   .partial();
 
