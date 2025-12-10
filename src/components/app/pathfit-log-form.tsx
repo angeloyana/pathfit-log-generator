@@ -4,6 +4,7 @@ import * as React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
+import { ActivityLogsFields } from '@/components/app/activity-logs-fields';
 import { Button } from '@/components/ui/button';
 import {
   Field,
@@ -46,6 +47,14 @@ export function PathfitLogForm() {
             <FieldDescription>Body measurements at the start of the term.</FieldDescription>
             <FieldGroup>
               <MetricsFields />
+            </FieldGroup>
+          </FieldSet>
+          <FieldSeparator />
+          <FieldSet>
+            <FieldLegend>Activity Logs</FieldLegend>
+            <FieldDescription>Record of activities completed during the term.</FieldDescription>
+            <FieldGroup>
+              <ActivityLogsFields />
             </FieldGroup>
           </FieldSet>
           <Field orientation="responsive">
