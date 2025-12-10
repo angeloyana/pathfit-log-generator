@@ -15,9 +15,10 @@ import {
 } from '@/components/ui/select';
 import { periodicTerms } from '@/constants/periodic-terms';
 import { sexes } from '@/constants/sexes';
+import type { PathfitLogData } from '@/lib/validators';
 
 export function GeneralFieldSet() {
-  const form = useFormContext();
+  const form = useFormContext<PathfitLogData>();
 
   return (
     <FieldSet>

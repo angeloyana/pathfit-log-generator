@@ -5,15 +5,16 @@ import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldGroup, FieldLegend, FieldSet } from '@/components/ui/field';
 import { FormControl, FormError, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import type { PathfitLogData } from '@/lib/validators';
 
 type ExercisesFieldsProps = {
-  baseName: string;
+  name: `activityLogs.${number}.exercises` | `practicalTest.activityLog.exercises`;
 };
 
-export function ExercisesFields({ baseName }: ExercisesFieldsProps) {
-  const form = useFormContext();
+export function ExercisesFields({ name }: ExercisesFieldsProps) {
+  const form = useFormContext<PathfitLogData>();
   const { fields, append, remove } = useFieldArray({
-    name: baseName,
+    name,
     control: form.control,
   });
 
@@ -44,7 +45,7 @@ export function ExercisesFields({ baseName }: ExercisesFieldsProps) {
               <FieldGroup>
                 <div className="grid gap-7 md:grid-cols-2">
                   <FormField
-                    name={`${baseName}.${index}.name`}
+                    name={`${name}.${index}.name`}
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
@@ -62,7 +63,7 @@ export function ExercisesFields({ baseName }: ExercisesFieldsProps) {
                     )}
                   />
                   <FormField
-                    name={`${baseName}.${index}.frequency`}
+                    name={`${name}.${index}.frequency`}
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>

@@ -11,15 +11,16 @@ import {
   InputGroupInput,
   InputGroupText,
 } from '@/components/ui/input-group';
+import type { PathfitLogData } from '@/lib/validators';
 
 type FoodLogFieldsProps = {
-  baseName: string;
+  name: `activityLogs.${number}.foodLog` | `practicalTest.activityLog.foodLog`;
 };
 
-export function FoodLogFields({ baseName }: FoodLogFieldsProps) {
-  const form = useFormContext();
+export function FoodLogFields({ name }: FoodLogFieldsProps) {
+  const form = useFormContext<PathfitLogData>();
   const { fields, append, remove } = useFieldArray({
-    name: baseName,
+    name,
     control: form.control,
   });
 
@@ -50,7 +51,7 @@ export function FoodLogFields({ baseName }: FoodLogFieldsProps) {
               <FieldGroup>
                 <div className="grid gap-7 md:grid-cols-2">
                   <FormField
-                    name={`${baseName}.${index}.name`}
+                    name={`${name}.${index}.name`}
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>
@@ -68,7 +69,7 @@ export function FoodLogFields({ baseName }: FoodLogFieldsProps) {
                     )}
                   />
                   <FormField
-                    name={`${baseName}.${index}.calories`}
+                    name={`${name}.${index}.calories`}
                     control={form.control}
                     render={({ field }) => (
                       <FormItem>

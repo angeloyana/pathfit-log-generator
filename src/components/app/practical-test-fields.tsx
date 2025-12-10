@@ -12,9 +12,10 @@ import {
   FieldSet,
 } from '@/components/ui/field';
 import { Switch } from '@/components/ui/switch';
+import type { PathfitLogData } from '@/lib/validators';
 
 export function PracticalTestFields() {
-  const form = useFormContext();
+  const form = useFormContext<PathfitLogData>();
   const practicalTest = form.watch('practicalTest');
   const showFields = !!practicalTest;
 
@@ -40,7 +41,7 @@ export function PracticalTestFields() {
               <FieldLegend>Metrics</FieldLegend>
               <FieldDescription>Body measurements before the term ends.</FieldDescription>
               <FieldGroup>
-                <MetricsFields baseName="practicalTest.metrics" />
+                <MetricsFields name="practicalTest.metrics" />
               </FieldGroup>
             </FieldSet>
             <FieldSeparator />
@@ -48,7 +49,7 @@ export function PracticalTestFields() {
               <FieldLegend>Activity Log</FieldLegend>
               <FieldDescription>Activity log during the practical test.</FieldDescription>
               <FieldGroup>
-                <ActivityLogFields baseName="practicalTest.activityLog" />
+                <ActivityLogFields name="practicalTest.activityLog" />
               </FieldGroup>
             </FieldSet>
           </>

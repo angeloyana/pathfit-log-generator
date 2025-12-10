@@ -7,14 +7,15 @@ import {
   InputGroupInput,
   InputGroupText,
 } from '@/components/ui/input-group';
+import type { PathfitLogData } from '@/lib/validators';
 
 type MetricsFieldsProps = {
-  baseName?: string;
+  name?: 'practicalTest.metrics';
 };
 
-export function MetricsFields({ baseName }: MetricsFieldsProps) {
-  baseName = baseName ? baseName + '.' : '';
-  const form = useFormContext();
+export function MetricsFields({ name }: MetricsFieldsProps) {
+  const baseName = name ? (`${name}.` as const) : '';
+  const form = useFormContext<PathfitLogData>();
 
   return (
     <>

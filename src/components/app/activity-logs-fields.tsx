@@ -3,11 +3,12 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Field, FieldGroup, FieldSet } from '@/components/ui/field';
+import type { PathfitLogData } from '@/lib/validators';
 
 import { ActivityLogFields } from './activity-log-fields';
 
 export function ActivityLogsFields() {
-  const form = useFormContext();
+  const form = useFormContext<PathfitLogData>();
   const { fields, append, remove } = useFieldArray({
     name: 'activityLogs',
     control: form.control,
@@ -31,7 +32,7 @@ export function ActivityLogsFields() {
           </Button>
           <FieldSet>
             <FieldGroup>
-              <ActivityLogFields baseName={`activityLogs.${index}`} />
+              <ActivityLogFields name={`activityLogs.${index}`} />
             </FieldGroup>
           </FieldSet>
         </div>

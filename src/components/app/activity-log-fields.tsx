@@ -12,21 +12,22 @@ import {
   InputGroupText,
 } from '@/components/ui/input-group';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import type { PathfitLogData } from '@/lib/validators';
 
 import { ExercisesFields } from './exercises-fields';
 import { FoodLogFields } from './food-log-fields';
 
 type ActivityLogFieldsProps = {
-  baseName: string;
+  name: `activityLogs.${number}` | `practicalTest.activityLog`;
 };
 
-export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
-  const form = useFormContext();
+export function ActivityLogFields({ name }: ActivityLogFieldsProps) {
+  const form = useFormContext<PathfitLogData>();
 
   return (
     <>
       <FormField
-        name={`${baseName}.date`}
+        name={`${name}.date`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -56,7 +57,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         )}
       />
       <FormField
-        name={`${baseName}.venue`}
+        name={`${name}.venue`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -75,7 +76,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
       />
       <div className="grid gap-7 md:grid-cols-2">
         <FormField
-          name={`${baseName}.timeStarted`}
+          name={`${name}.timeStarted`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -94,7 +95,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
           )}
         />
         <FormField
-          name={`${baseName}.timeEnded`}
+          name={`${name}.timeEnded`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -115,7 +116,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
       </div>
       <div className="grid gap-7 md:grid-cols-2">
         <FormField
-          name={`${baseName}.pulseRateBefore`}
+          name={`${name}.pulseRateBefore`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -143,7 +144,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
           )}
         />
         <FormField
-          name={`${baseName}.pulseRateAfter`}
+          name={`${name}.pulseRateAfter`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -172,7 +173,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         />
       </div>
       <FormField
-        name={`${baseName}.frequency`}
+        name={`${name}.frequency`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -196,13 +197,13 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         )}
       />
       <FieldSeparator />
-      <ExercisesFields baseName={`${baseName}.exercises`} />
+      <ExercisesFields name={`${name}.exercises`} />
       <FieldSeparator />
-      <FoodLogFields baseName={`${baseName}.foodLog`} />
+      <FoodLogFields name={`${name}.foodLog`} />
       <FieldSeparator />
       <div className="grid gap-7 md:grid-cols-2">
         <FormField
-          name={`${baseName}.sleepTime`}
+          name={`${name}.sleepTime`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -221,7 +222,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
           )}
         />
         <FormField
-          name={`${baseName}.wakeTime`}
+          name={`${name}.wakeTime`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -241,7 +242,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         />
       </div>
       <FormField
-        name={`${baseName}.meal`}
+        name={`${name}.meal`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -259,7 +260,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         )}
       />
       <FormField
-        name={`${baseName}.mealTime`}
+        name={`${name}.mealTime`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -278,7 +279,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
         )}
       />
       <FormField
-        name={`${baseName}.mealVenue`}
+        name={`${name}.mealVenue`}
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -297,7 +298,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
       />
       <div className="grid gap-7 md:grid-cols-2">
         <FormField
-          name={`${baseName}.moodBefore`}
+          name={`${name}.moodBefore`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -316,7 +317,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
           )}
         />
         <FormField
-          name={`${baseName}.moodAfter`}
+          name={`${name}.moodAfter`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -337,7 +338,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
       </div>
       <div className="grid gap-7 md:grid-cols-2">
         <FormField
-          name={`${baseName}.hungerLevel`}
+          name={`${name}.hungerLevel`}
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -366,7 +367,7 @@ export function ActivityLogFields({ baseName }: ActivityLogFieldsProps) {
           )}
         />
         <FormField
-          name={`${baseName}.fullnessLevel`}
+          name={`${name}.fullnessLevel`}
           control={form.control}
           render={({ field }) => (
             <FormItem>

@@ -61,6 +61,73 @@ export function PathfitLogForm() {
           <FieldSeparator />
           <PracticalTestFields />
           <Field orientation="responsive">
+            {import.meta.env.DEV && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  form.reset({
+                    pathfitNumber: 1,
+                    periodicTerm: 'midterm',
+                    startOfTerm: new Date(),
+                    name: 'Doe, John',
+                    section: 'BSIT-21B',
+                    birthDate: new Date(2000, 0, 15),
+                    sex: 'male',
+                    weight: 70,
+                    height: 1.75,
+                    waistCircumference: 32,
+                    activityLogs: [
+                      {
+                        date: new Date(),
+                        venue: 'Gym',
+                        timeStarted: '08:00',
+                        timeEnded: '09:00',
+                        pulseRateBefore: 22,
+                        pulseRateAfter: 35,
+                        frequency: 3,
+                        exercises: [{ name: 'Push-ups', frequency: '3 x 10' }],
+                        foodLog: [{ name: 'Chicken Salad', calories: 350 }],
+                        sleepTime: '22:00',
+                        wakeTime: '06:00',
+                        meal: 'Breakfast',
+                        mealTime: '07:00',
+                        mealVenue: 'Canteen',
+                        moodBefore: 'Tired',
+                        moodAfter: 'Energetic',
+                        hungerLevel: 7,
+                        fullnessLevel: 3,
+                      },
+                    ],
+                    practicalTest: {
+                      metrics: { weight: 70, height: 1.75, waistCircumference: 32 },
+                      activityLog: {
+                        date: new Date(),
+                        venue: 'Gym',
+                        timeStarted: '10:00',
+                        timeEnded: '11:00',
+                        pulseRateBefore: 20,
+                        pulseRateAfter: 30,
+                        frequency: 2,
+                        exercises: [{ name: 'Sit-ups', frequency: '2 x 15' }],
+                        foodLog: [{ name: 'Protein Shake', calories: 200 }],
+                        sleepTime: '22:00',
+                        wakeTime: '06:00',
+                        meal: 'Breakfast',
+                        mealTime: '07:00',
+                        mealVenue: 'Canteen',
+                        moodBefore: 'Tired',
+                        moodAfter: 'Energetic',
+                        hungerLevel: 6,
+                        fullnessLevel: 4,
+                      },
+                    },
+                  });
+                }}
+              >
+                Fill-Up Sample Data
+              </Button>
+            )}
             <Button type="submit" disabled={isSubmitPending}>
               {isSubmitPending ? <Spinner /> : <WandSparkles />}
               Generate
