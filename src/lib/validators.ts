@@ -69,4 +69,5 @@ export const pathfitLogSchema = z
   })
   .partial();
 
+export type ActivityLogData = z.infer<typeof activityLogSchema>;
 export type PathfitLogData = z.infer<typeof pathfitLogSchema>;

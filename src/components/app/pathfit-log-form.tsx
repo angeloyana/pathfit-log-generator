@@ -16,6 +16,7 @@ import {
   FieldSet,
 } from '@/components/ui/field';
 import { Spinner } from '@/components/ui/spinner';
+import { generatePathfitLogPdf } from '@/lib/pdf-generator';
 import { type PathfitLogData, pathfitLogSchema } from '@/lib/validators';
 
 import { GeneralFieldSet } from './general-field-set';
@@ -29,11 +30,22 @@ export function PathfitLogForm() {
 
   const handleSubmit = (data: PathfitLogData) => {
     startSubmitTransition(async () => {
-      toast(
-        <pre>
-          <code>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      );
+      const blob = await generatePathfitLogPdf(data);
+
+      toast.success('Generated successfully', {
+        duration: Infinity,
+        action: {
+          label: 'Download',
+          onClick: () => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pathfit-log.pdf';
+            a.click();
+            URL.revokeObjectURL(url);
+          },
+        },
+      });
     });
   };
 
